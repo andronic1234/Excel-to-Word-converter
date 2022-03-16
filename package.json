@@ -1,0 +1,16 @@
+{
+  "name": "excel-to-word-converter",
+  "version": "1.0.0",
+  "description": "Converts Excel files to Word documents",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andreas Fotopoulos",
+  "license": "ISC",
+  "dependencies": {
+    "requirejs": "^2.3.6",
+    "webpack": "^5.70.0",
+    "xlsx": "^0.18.3"
+  }
+}

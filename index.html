@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <title>Exporter</title>
+    <script>
+        function Export2Word(element, filename = ''){
+            var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+            var postHtml = "</body></html>";
+            var html = preHtml+document.getElementById(element).innerHTML+postHtml;
+        
+            var blob = new Blob(['\ufeff', html], {
+                type: 'application/msword'
+            });
+            
+            var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+            
+            filename = filename?filename+'.doc':'ExportedData.doc';
+            
+            var downloadLink = document.createElement("a");
+        
+            document.body.appendChild(downloadLink);
+            
+            if(navigator.msSaveOrOpenBlob ){
+                navigator.msSaveOrOpenBlob(blob, filename);
+            }else{
+        
+                downloadLink.href = url;
+                
+                downloadLink.download = filename;
+        
+                downloadLink.click();
+            }
+            
+            document.body.removeChild(downloadLink);
+        }
+        fetch('storer.json')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+            function appendData(data) {
+                var mainContainer = document.getElementById('exportContent');
+                for (var i = 0; i < data.length; i++) {
+                    var par = document.createElement("p");
+                    par.innerHTML = 'Name: ' + data[i].Name + ' City: ' + data[i].City + ' Country: ' + data[i].Country;
+                    mainContainer.appendChild(par);
+
+                }
+            }
+            </script>
+            
+
+</head>
+<body>
+    <div>
+        <P id='exportContent'>
+
+        </P>
+    </div>
+    <button onclick="Export2Word('exportContent');">Export to Word</button>
+</body>
+</html>
