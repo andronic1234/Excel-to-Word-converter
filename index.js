@@ -6,7 +6,7 @@ const parse = (filename) => {
 
     return Object.keys(eData.Sheets).map((name) => ({
         name,
-        data: XLSX.utils.sheet_to_json(eData.Sheets[name], { header: 0 }),
+        data: XLSX.utils.sheet_to_json(eData.Sheets[name], { header: 1 }),
     }));
 };
 

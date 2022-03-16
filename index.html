@@ -48,14 +48,12 @@
                 var mainContainer = document.getElementById('exportContent');
                 for (var i = 0; i < data.length; i++) {
                     var par = document.createElement("p");
-                    par.innerHTML = 'Name: ' + data[i].Name + ' City: ' + data[i].City + ' Country: ' + data[i].Country;
+                    par.innerHTML = data[i];
                     mainContainer.appendChild(par);
-
+                    console.log(data[i])
                 }
             }
-            </script>
-            
-
+    </script>
 </head>
 <body>
     <div>
