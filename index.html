@@ -45,13 +45,19 @@
                 console.log(err);
             })
             function appendData(data) {
+                let text = "<table border='3'>"
                 var mainContainer = document.getElementById('exportContent');
                 for (var i = 0; i < data.length; i++) {
-                    var par = document.createElement("p");
-                    par.innerHTML = data[i];
-                    mainContainer.appendChild(par);
-                    console.log(data[i])
+                    text += "<tr>"
+                    for (var j = 0; j < data[j].length; j++) {
+                        var par = document.createElement("p");
+                        text += "<td>" + data[i][j] + "</td>";                   
+                        mainContainer.appendChild(par);
+                    }
+                    text += "</tr>"
                 }
+                text += "</table>"
+                par.innerHTML = text;
             }
     </script>
 </head>
